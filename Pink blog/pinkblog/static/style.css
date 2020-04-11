@@ -1,0 +1,118 @@
+body {
+    background: #f8a5c2;
+    margin-top: 5rem;
+}
+
+header {
+    padding: 0;
+}
+
+nav {
+    background-color: #f78fb3;
+}
+
+.active {
+    font-weight: 500;
+}
+
+a.active:hover {
+    text-decoration: none;
+}
+
+.navbar .loginbar .nav-link{
+    color: black;
+}
+
+.post {
+    background-color: rgba(235, 184, 230, 0.658);
+    margin: 10px 0px;
+    padding: 20px 20px;
+    padding-left: 70px;
+}
+
+.post a {
+    text-decoration: none;
+}
+
+.wishings {
+    font-size: 1.3em;
+    background-color: rgba(235, 184, 230, 0.932);
+    margin: 10px 0px;
+    padding: 0 10%;;
+}
+
+.sidebar .nav-item{
+    background-color: rgb(253, 121, 168);
+}
+
+.sidebar .nav-item .nav-link{
+    color: black;
+}
+
+.sidebar .nav-item .nav-link:hover{
+    color: lightgray;
+}
+
+.alert-success{
+    background-color: rgba(183, 233, 148, 0.651);
+    border-color: rgba(183, 233, 148, 0.8);
+}
+
+.content-section {
+    background-color: rgba(235, 184, 230, 0.658);
+    padding: 10px;
+}
+
+.account-img {
+	height: 125px;
+	width: 125px;
+	margin-right: 20px;
+	margin-bottom: 16px;
+}
+
+.account-heading {
+	font-size: 2.5rem;
+}
+
+.btn-info {
+    background-color: rgba(253, 121, 168, 1);
+    border-color: rgb(253, 121, 168);
+}
+
+.btn-info:hover, .btn-info-active {
+    background-color: rgb(231, 65, 123);
+}
+
+.article-image {
+    height: 65px;
+	width: 65px;
+	margin-right: 16px;
+}
+
+.form-group .post-content {
+    height: 20rem;
+}
+
+.opend-post {
+    background-color: rgba(235, 184, 230, 0.658);
+    margin: 10px 0px;
+    padding: 10px;
+}
+
+.post-author {
+    font-size: 2rem;
+}
+
+.post-content {
+    white-space: pre-line;
+}
+
+.comment-img {
+    height: 25px;
+	width: 25px;
+}
+
+.post-img {
+    height: 125px;
+    width: 125px;
+}

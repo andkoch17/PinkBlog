@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}" />
+        
+        {% if title %}
+            <title>Pink blog - {{ title }}</title>
+        {% else %}
+            <title>Pink blog</title>
+        {% endif %}
+
+    </head>
+    <body>
+        <header>
+            <nav class="navbar navbar-light navbar-expand-lg mr-auto fixed-top">
+                <div class="container">
+                    <a class="navbar-brand" href="{{ url_for('home') }}">Pink Blog</a>
+                    <div class="navbar-nav navbar-collapse" id="navbarToggle">
+                        {% if active == 'home' %}
+                            <a class="nav-item nav-link active" href="{{ url_for('home') }}">Главная</a>
+                        {% else %}
+                            <a class="nav-item nav-link" href="{{ url_for('home') }}">Главная</a>
+                        {% endif %}
+                        <!--<a class="nav-item nav-link" href="#">Новости</a>-->
+                        {% if active == 'about' %}
+                            <a class="nav-item nav-link active" href="{{ url_for('about') }}">О нас</a>
+                        {% else %}
+                            <a class="nav-item nav-link" href="{{ url_for('about') }}">О нас</a>
+                        {% endif %}
+                    </div>
+                    <div class="navbar-nav loginbar">
+                        {% if current_user.is_authenticated%}
+                            <a class="nav-item nav-link" href="{{ url_for('account_info', username=current_user.username) }}">{{ current_user.username }}</a>
+                            <a class="nav-item nav-link" href="{{ url_for('logout') }}">Выйти</a>
+                        {% else %}
+                            <a class="nav-item nav-link" href="{{ url_for('login') }}">Войти</a>
+                            <a class="nav-item nav-link" href="{{ url_for('register') }}">Зарегестрироваться</a>
+                        {% endif %}    
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <main class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                        {% if messages %}
+                            {% for category, message in messages %}
+                                <div class="alert alert-{{ category }} rounded">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+                    {% block content %}{% endblock %}
+                </div>
+                <div class="col-md-4">
+                    <p class="wishings rounded-pill">Добра тебе и хорошего здоровья :з</p>
+                    <ul class="nav flex-column list-group sidebar">
+                        <li class="nav-item list-group-item"><a class="nav-link" href="{{ url_for('new_post') }}">Новый пост</a></li>
+                        <li class="nav-item list-group-item"><a class="nav-link" href="#">Настройки</a></li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+    
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+    </body>
+</html>

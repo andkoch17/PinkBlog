@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="content-section">
+        <div class="media">
+            <img class="rounded-circle account-img" src="{{ url_for('static', filename='profile_pics/'+user.user_image) }}"/>
+            <div class="media-body">
+                <h2 class="account-heading">{{ user.username }}</h2>
+                {% if current_user == user %}
+                    <p class="text-secondary">{{ user.email }}</p>
+                    <a class="btn btn-info" href="{{ url_for('account_update', username=current_user.username) }}">Редактировать аккаунт</a>
+                {% endif %}
+            </div>
+        </div>
+        <div class="border-top pt-4">
+            {% if posts %}
+                <h1>Посты</h1>
+                {% for post in posts.items %}
+                    <article class="media rounded-pill post">
+                        <img class="rounded-circle article-image"
+                            src="{{ url_for('static', filename='profile_pics/'+post.author.user_image) }}" />
+                        <div class="media-body">
+                            <a href="{{ url_for('account_info', username=post.author.username) }}">{{ post.author.username }}</a>
+                            <h2><a href="{{ url_for('post', post_id=post.id) }}">{{ post.title }}</a></h2>
+                            <p class="post-content">{{ post.content }}</p>
+                            <small class="text-muted">{{ post.date_posted.strftime('%Y-%m-%d') }}</small>
+                        </div>
+                    </article>
+                {% endfor %}
+                {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=2, right_current=2) %}
+                    {% if page_num %}
+                        {% if posts.page == page_num %}
+                            <a class="btn btn-info-active" href="{{ url_for('account_info', page=page_num, username=user.username) }}">{{ page_num }}</a>
+                        {% else %}
+                            <a class="btn btn-info" href="{{ url_for('account_info', page=page_num, username=user.username) }}">{{ page_num }}</a>
+                        {% endif %}
+                    {% else %}
+                        ...
+                    {% endif %}
+                {% endfor %}
+            {% else %}
+                <h2>У данного пользователя еще нет постов</h2>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
